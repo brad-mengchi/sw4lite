@@ -1,0 +1,101 @@
+==36426== NVPROF is profiling process 36426, command: ./sw4lite ../tests/pointsource/pointsource.in
+
+* Processing the grid command...
+* Setting nx to 201 to be consistent with h=0.04
+* Setting ny to 201 to be consistent with h=0.04
+* Setting nz to 101 to be consistent with h=0.04
+defineDimensionsGXY: #ghost points=2, #parallel padding points=2
+Extent of the computational domain xmax=8 ymax=8 zmin = 0 zmax=4
+***inside setupMPICommunications***
+
+Global grid sizes (without ghost points)
+Grid         h        Nx        Ny        Nz       Points
+   0      0.04       201       201       101      4080501
+Total number of grid points (without ghost points): 4.0805e+06
+
+Done reading input file 
+2 Cuda devices found:
+      Device 0: name = TITAN X (Pascal),  Compute capability:6.1,  Memory (GB) 11
+      Device 1: name = Quadro K620,  Compute capability:5.0,  Memory (GB) 1
+ size of domain 201 x 201 x 101 grid points (excluding ghost points)
+ GPU block size 16 x 16 x 1
+ GPU grid size  13 x 13 x 101
+ GPU cores 208 x 208 x 101
+Setting up SBP boundary stencils
+----------------------------------------------------
+ Making Output Directory: pointsource-h0p04/
+		
+... Done!
+----------------------------------------------------
+Detected at least one boundary with supergrid conditions
+*** computing the time step ***
+ CFL= 1.3 prel. time step=0.0265361
+number of grid point  sources = 216
+number of unique g.p. sources = 216
+setup of sources done
+Running on 1 MPI tasks
+starting at time 0 at cycle 1
+Time step 1 t= 0.026087
+Time step 23 t= 0.6
+   Execution time, solver phase 2.23692 seconds 
+
+----------------------------------------
+          Execution time summary 
+  Total      BC comm    BC phys    Scheme     Supergrid  Forcing 
+0.73818    0.2356     0.0051267  0.13786    0.35501    0.0030363  Clock tick is 1e-06 seconds
+----------------------------------------
+
+Errors at time 0.6 Linf = 0.569416 L2 = 0.0245361 norm of solution = 3.7439
+ Total running time: 4.46778
+==36426== Profiling application: ./sw4lite ../tests/pointsource/pointsource.in
+==36426== Profiling result:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 30.23%  277.71ms        23  12.074ms  11.981ms  12.127ms  void rhs4_v2<bool=1, bool=0>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+ 26.46%  243.05ms        23  10.567ms  10.531ms  10.596ms  void rhs4_v2<bool=1, bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+ 16.46%  151.23ms       257  588.43us     640ns  39.997ms  [CUDA memcpy HtoD]
+ 10.89%  100.08ms        46  2.1757ms  288.30us  4.1277ms  void addsgd4_SM<bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double)
+  3.48%  31.995ms        23  1.3911ms  1.3262ms  1.4370ms  void rhs4_Kboundary<bool=1, bool=0, bool=1>(int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  3.43%  31.529ms        23  1.3708ms  1.3367ms  1.4704ms  void rhs4_Kboundary<bool=1, bool=1, bool=1>(int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  3.00%  27.543ms        23  1.1975ms  1.1941ms  1.2012ms  dpdmt_dev(int, int, int, int, int, int, double*, double*, double*, double*, double, int)
+  1.15%  10.601ms        23  460.93us  452.94us  467.98us  void rhs4_X<bool=1, bool=0>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  1.14%  10.497ms        23  456.38us  452.81us  459.12us  void rhs4_X<bool=1, bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  0.89%  8.1549ms         1  8.1549ms  8.1549ms  8.1549ms  [CUDA memcpy DtoH]
+  0.71%  6.5396ms        23  284.33us  283.37us  285.58us  void rhs4_Y<bool=1, bool=0>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  0.65%  5.9702ms        23  259.57us  257.67us  261.90us  void rhs4_Y<bool=1, bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double, double)
+  0.61%  5.6134ms        23  244.06us  240.46us  247.24us  void addsgd4_X<bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double)
+  0.33%  3.0216ms        46  65.687us  59.425us  72.450us  void bcfortsg<bool=1>(int, int, int, int, int, int, int*, int, int, int, double*, double, boundaryConditionType*, double*, double*, double, double*, double*, double*, double*, double*, double*, double, double, double, double*, double*)
+  0.29%  2.7066ms        23  117.68us  115.59us  119.52us  void addsgd4_Y<bool=1>(int, int, int, int, int, int, int, int, int, double*, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double const *, double)
+  0.21%  1.9309ms        46  41.977us  41.697us  42.177us  forcing_dev(double, Sarray*, int, GridPointSource**, int, int*, int, bool)
+  0.02%  168.16us       276     609ns     576ns     896ns  [CUDA memset]
+  0.01%  109.90us        46  2.3890us  1.5360us  5.8240us  BufferToHaloKernelY_dev_rev(double*, double*, double*, double*, int, int, int, int, int, int, int)
+  0.01%  78.690us        46  1.7100us  1.4720us  2.1120us  HaloToBufferKernelY_dev_rev(double*, double*, double*, double*, int, int, int, int, int, int, int)
+  0.01%  75.653us        46  1.6440us  1.4400us  1.8880us  BufferToHaloKernelX_dev_rev(double*, double*, double*, double*, int, int, int, int, int, int, int)
+  0.01%  72.770us        46  1.5810us  1.4080us  1.9200us  HaloToBufferKernelX_dev_rev(double*, double*, double*, double*, int, int, int, int, int, int, int)
+  0.00%  27.937us         1  27.937us  27.937us  27.937us  init_forcing_dev(GridPointSource**, int)
+
+==36426== API calls:
+Time(%)      Time     Calls       Avg       Min       Max  Name
+ 43.97%  725.04ms       299  2.4249ms  2.7240us  16.171ms  cudaStreamSynchronize
+ 23.80%  392.45ms         2  196.22ms  15.995us  392.43ms  cudaStreamCreate
+ 16.59%  273.58ms         1  273.58ms  273.58ms  273.58ms  cudaDeviceReset
+  9.44%  155.73ms       255  610.70us     838ns  40.333ms  cudaMemcpy
+  1.70%  28.091ms         4  7.0227ms  5.9895ms  7.4833ms  cudaHostRegister
+  1.36%  22.403ms         4  5.6007ms  4.9806ms  6.2579ms  cudaHostUnregister
+  1.25%  20.643ms        46  448.76us  69.493us  835.67us  cudaDeviceSynchronize
+  0.51%  8.3365ms      9800     850ns     628ns  16.553us  cudaSetupArgument
+  0.43%  7.1113ms       257  27.670us     698ns  543.45us  cudaMalloc
+  0.30%  5.0027ms       576  8.6850us  6.2160us  69.843us  cudaLaunch
+  0.22%  3.6059ms         2  1.8030ms  1.7908ms  1.8151ms  cudaMallocHost
+  0.16%  2.5773ms       276  9.3380us  7.5430us  26.471us  cudaMemsetAsync
+  0.10%  1.6090ms         3  536.32us  443.78us  682.16us  cudaGetDeviceProperties
+  0.08%  1.3285ms       182  7.2990us     768ns  340.69us  cuDeviceGetAttribute
+  0.03%  515.85us       576     895ns     629ns  7.8220us  cudaConfigureCall
+  0.02%  328.61us       392     838ns     698ns  5.9370us  cudaGetLastError
+  0.02%  302.84us         2  151.42us  69.704us  233.14us  cuDeviceTotalMem
+  0.01%  102.88us         2  51.439us  51.265us  51.614us  cuDeviceGetName
+  0.00%  43.652us         4  10.913us  6.6350us  18.928us  cudaMemcpyToSymbol
+  0.00%  20.045us         1  20.045us  20.045us  20.045us  cudaMemcpyAsync
+  0.00%  10.686us         1  10.686us  10.686us  10.686us  cudaSetDevice
+  0.00%  5.5880us         6     931ns     768ns  1.3270us  cuDeviceGet
+  0.00%  5.0290us         3  1.6760us     768ns  3.3530us  cuDeviceGetCount
+  0.00%  2.3040us         2  1.1520us  1.0470us  1.2570us  cudaGetDeviceCount

@@ -23,7 +23,7 @@ else
    MPIPATH = $(dir $(shell which mpicc))../
    gpuarch := sm_60
    EXTRA_LINK_FLAGS = -lmpi -llapack
-   MPIINC = $(MPIPATH)/include
+   MPIINC = $(MPIPATH)/include/mpi
    debugdir := debug_cuda
    optdir   := optimize_cuda
 endif
